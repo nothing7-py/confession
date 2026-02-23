@@ -12,63 +12,59 @@
 <canvas id="stars"></canvas>
 <div id="threeContainer"></div>
 <div id="sakura"></div>
-<div id="floatingJP"></div>
 
 <!-- Intro -->
 <div id="intro">
   <h1>Under the cherry blossoms... 🌸</h1>
 </div>
 
-<!-- Name Input -->
+<!-- Name Screen -->
 <div id="nameScreen" class="hidden card">
   <h2>Ne… what’s your name?</h2>
   <input type="text" id="nameInput" placeholder="Type your name">
-  <button onclick="startLove()">Enter 💕</button>
+  <button id="enterBtn">Enter 💕</button>
 </div>
 
 <!-- Main -->
-<div id="mainContent" class="hidden card fade">
+<div id="mainContent" class="hidden card">
   <h1 id="title"></h1>
-  <p id="typewriter"></p>
-  <p class="jpSub" id="jpLine"></p>
-  <button onclick="openLetter()">Read My Feelings 💌</button>
-  <button onclick="startGame()">One Question 😳</button>
+  <p id="message"></p>
+  <button id="letterBtn">Read My Feelings 💌</button>
+  <button id="questionBtn">One Question 😳</button>
 </div>
 
-<!-- Letter -->
+<!-- Letter Popup -->
 <div id="letterPopup" class="hidden overlay">
   <div class="card">
     <h2>To <span id="letterName"></span> 🌸</h2>
     <p id="letterText"></p>
-    <button onclick="closeLetter()">Close</button>
+    <button id="closeLetter">Close</button>
   </div>
 </div>
 
 <!-- Game -->
-<div id="gameScreen" class="hidden card fade">
+<div id="gameScreen" class="hidden card">
   <h2>Will you stay with me?</h2>
   <button id="yesBtn">Yes 💖</button>
   <button id="noBtn">No 🙈</button>
 </div>
 
 <!-- Final -->
-<div id="finalScreen" class="hidden fade">
+<div id="finalScreen" class="hidden">
   <h1 id="finalText"></h1>
-  <p class="jpSub">一緒に思い出を作ろう 🌸</p>
   <canvas id="confetti"></canvas>
 </div>
 
 <!-- Credits -->
 <div id="credits" class="hidden">
   <p>🌸 A Small Confession</p>
-  <p>Made with courage</p>
   <p>Starring: You & Me</p>
-  <p>Under the Cherry Blossoms</p>
+  <p>Under The Sakura Night</p>
   <p>終わり 💗</p>
 </div>
 
 <audio id="bgMusic" loop>
-  <source src="musicc.mp3" type="audio/mp3">
+  <source src="music.mp3" type="audio/mp3">
 </audio>
 
 <script src="script.js"></script>
