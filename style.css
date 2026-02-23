@@ -51,7 +51,14 @@ button:hover {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  transition: opacity 1s ease;
+  animation: fadeOutIntro 3s forwards;
+  z-index: 10;
+}
+
+@keyframes fadeOutIntro {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
 #credits {
