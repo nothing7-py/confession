@@ -1,29 +1,27 @@
 body {
   margin: 0;
-  overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
   background: radial-gradient(circle at bottom, #1a1a2e, #0f3460);
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .hidden { display: none; }
 
 .card {
-  position: relative;
-  z-index: 2;
   background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(15px);
-  padding: 30px;
+  backdrop-filter: blur(12px);
+  padding: 25px;
   border-radius: 20px;
   width: 90%;
   max-width: 400px;
-  margin: 20px auto;
+  margin: 100px auto;
 }
 
 button {
-  padding: 12px 25px;
-  border-radius: 30px;
+  padding: 10px 20px;
+  border-radius: 25px;
   border: none;
   background: #ff69b4;
   color: white;
@@ -34,24 +32,6 @@ button {
 
 button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px #ff69b4;
-}
-
-.jpSub {
-  font-size: 14px;
-  opacity: 0.5;
-  letter-spacing: 2px;
-}
-
-#intro {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  transition: opacity 1s ease;
 }
 
 .overlay {
@@ -63,27 +43,15 @@ button:hover {
   align-items: center;
 }
 
-#sakura span {
+#intro {
   position: fixed;
-  top: -10px;
-  font-size: 18px;
-  opacity: 0.7;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); }
-}
-
-#floatingJP span {
-  position: fixed;
-  font-size: 22px;
-  opacity: 0.15;
-  animation: floatJP 10s linear infinite;
-}
-
-@keyframes floatJP {
-  to { transform: translateY(-100vh); }
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  transition: opacity 1s ease;
 }
 
 #credits {
@@ -98,4 +66,15 @@ button:hover {
 @keyframes scrollCredits {
   from { bottom: -100%; }
   to { bottom: 100%; }
+}
+
+#sakura span {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
 }
