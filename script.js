@@ -21,7 +21,9 @@ const finalText = document.getElementById("finalText");
 const nameInput = document.getElementById("nameInput");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-const bgMusic = document.getElementById("bgMusic");
+bgMusic.addEventListener("ended", function() {
+  finalScreen.classList.remove("hidden");
+});
 
 let userName = "";
 
