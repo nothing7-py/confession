@@ -58,8 +58,8 @@ letterBtn.addEventListener("click", () => {
   letterPopup.classList.remove("hidden");
 });
 
-closeLetter.addEventListener("click", () => {
-  letterPopup.classList.add("hidden");
+document.getElementById("closeLetter").addEventListener("click", function() {
+  document.getElementById("letterPopup").classList.add("hidden");
 });
 
 // Game
