@@ -1,17 +1,41 @@
+// Elements
 const intro = document.getElementById("intro");
 const nameScreen = document.getElementById("nameScreen");
+const mainContent = document.getElementById("mainContent");
+const gameScreen = document.getElementById("gameScreen");
+const finalScreen = document.getElementById("finalScreen");
+const letterPopup = document.getElementById("letterPopup");
+const credits = document.getElementById("credits");
 
+const enterBtn = document.getElementById("enterBtn");
+const letterBtn = document.getElementById("letterBtn");
+const questionBtn = document.getElementById("questionBtn");
+const closeLetter = document.getElementById("closeLetter");
+
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const letterName = document.getElementById("letterName");
+const letterText = document.getElementById("letterText");
+const finalText = document.getElementById("finalText");
+
+const nameInput = document.getElementById("nameInput");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+let userName = "";
+
+// Intro
 setTimeout(() => {
   intro.style.opacity = "0";
   setTimeout(() => {
     intro.style.display = "none";
     nameScreen.classList.remove("hidden");
   }, 1000);
-}, 2500);
+}, 2000);
 
-let userName = "";
-
-function startLove() {
+// Start
+enterBtn.addEventListener("click", () => {
   userName = nameInput.value.trim();
   if (!userName) return;
 
@@ -19,128 +43,74 @@ function startLove() {
   mainContent.classList.remove("hidden");
 
   title.innerText = "Hey " + userName + " 🌸";
-  jpLine.innerText = "特別な日じゃなくても、伝えたかった。";
-
-  typeWriter("I didn’t need a special day to tell you this… 😌");
+  message.innerText = "I didn’t need a special day to tell you this… 😌";
 
   letterName.innerText = userName;
   letterText.innerText =
     "You became my comfort in the softest way. Like cherry blossoms falling quietly at night.";
 
-  sparkleName();
-  fadeInMusic();
-}
+  bgMusic.volume = 0.5;
+  bgMusic.play().catch(() => {});
+});
 
-function typeWriter(text) {
-  let i = 0;
-  typewriter.innerHTML = "";
-  function typing() {
-    if (i < text.length) {
-      typewriter.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, 50);
-    }
-  }
-  typing();
-}
+// Letter
+letterBtn.addEventListener("click", () => {
+  letterPopup.classList.remove("hidden");
+});
 
-function sparkleName(){
-  title.style.textShadow="0 0 15px pink";
-  setTimeout(()=>title.style.textShadow="none",1500);
-}
+closeLetter.addEventListener("click", () => {
+  letterPopup.classList.add("hidden");
+});
 
-function fadeInMusic() {
-  bgMusic.volume = 0;
-  bgMusic.play();
-  let vol = 0;
-  const fade = setInterval(() => {
-    if (vol < 0.5) {
-      vol += 0.02;
-      bgMusic.volume = vol;
-    } else clearInterval(fade);
-  }, 200);
-}
-
-function openLetter(){ letterPopup.classList.remove("hidden"); }
-function closeLetter(){ letterPopup.classList.add("hidden"); }
-
-function startGame(){
+// Game
+questionBtn.addEventListener("click", () => {
   mainContent.classList.add("hidden");
   gameScreen.classList.remove("hidden");
-}
-
-noBtn.addEventListener("mouseover", ()=>{
-  noBtn.style.position="absolute";
-  noBtn.style.left=Math.random()*70+"%";
-  noBtn.style.top=Math.random()*70+"%";
 });
 
-yesBtn.addEventListener("click", ()=>{
+// Moving No
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 70 + "%";
+  noBtn.style.top = Math.random() * 70 + "%";
+});
+
+// Yes
+yesBtn.addEventListener("click", () => {
   gameScreen.classList.add("hidden");
   finalScreen.classList.remove("hidden");
-  finalText.innerText="Then let’s make memories together, "+userName+" 🌸💗";
+
+  finalText.innerText =
+    "Then let’s make memories together, " + userName + " 🌸💗";
+
   startConfetti();
-  startEndingCredits();
+  setTimeout(() => credits.classList.remove("hidden"), 3000);
 });
 
-function startConfetti(){
-  const ctx=confetti.getContext("2d");
-  confetti.width=window.innerWidth;
-  confetti.height=window.innerHeight;
-  for(let i=0;i<150;i++){
-    ctx.fillStyle="#ff69b4";
-    ctx.fillRect(Math.random()*confetti.width,
-                 Math.random()*confetti.height,6,6);
+// Confetti
+function startConfetti() {
+  const confetti = document.getElementById("confetti");
+  const ctx = confetti.getContext("2d");
+  confetti.width = window.innerWidth;
+  confetti.height = window.innerHeight;
+
+  for (let i = 0; i < 150; i++) {
+    ctx.fillStyle = "#ff69b4";
+    ctx.fillRect(
+      Math.random() * confetti.width,
+      Math.random() * confetti.height,
+      6,
+      6
+    );
   }
 }
 
-function startEndingCredits(){
-  setTimeout(()=>{
-    credits.classList.remove("hidden");
-    setTimeout(()=>{
-      document.body.style.background="black";
-    },20000);
-  },3000);
-}
-
-/* Sakura */
-setInterval(()=>{
-  const petal=document.createElement("span");
-  petal.innerHTML="🌸";
-  petal.style.left=Math.random()*100+"vw";
-  petal.style.animationDuration=Math.random()*5+5+"s";
-  sakura.appendChild(petal);
-  setTimeout(()=>petal.remove(),10000);
-},600);
-
-/* Floating JP */
-const words=["好き","かわいい","運命"];
-setInterval(()=>{
-  const word=document.createElement("span");
-  word.innerText=words[Math.floor(Math.random()*3)];
-  word.style.left=Math.random()*100+"vw";
-  word.style.top="100vh";
-  floatingJP.appendChild(word);
-  setTimeout(()=>word.remove(),10000);
-},4000);
-
-/* 3D Heart */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-threeContainer.appendChild(renderer.domElement);
-
-const geometry=new THREE.TorusKnotGeometry(1,0.4,100,16);
-const material=new THREE.MeshBasicMaterial({color:0xff69b4,wireframe:true});
-const heart=new THREE.Mesh(geometry,material);
-scene.add(heart);
-camera.position.z=5;
-
-function animate(){
-  requestAnimationFrame(animate);
-  heart.rotation.x+=0.005;
-  heart.rotation.y+=0.005;
-  renderer.render(scene,camera);
-}
-animate();
+// Sakura
+setInterval(() => {
+  const petal = document.createElement("span");
+  petal.innerHTML = "🌸";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = Math.random() * 5 + 5 + "s";
+  document.getElementById("sakura").appendChild(petal);
+  setTimeout(() => petal.remove(), 10000);
+}, 600);
